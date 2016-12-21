@@ -22,7 +22,7 @@ Add a `stellarnav` class to your menu div.
 ```
 
 ### Javascript
-Include `stellarnav.js` and call `stellarNav()`.
+Include `stellarnav.min.js` and call `stellarNav()`.
 ```javascript
 <script type="text/javascript" src="js/stellarnav.js"></script>
 <script type="text/javascript">

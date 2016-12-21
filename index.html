@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+	<title>StellarNav.js - A Powerful Responsive Navigation</title>
+	<link href="https://fonts.googleapis.com/css?family=Exo+2:300,400" rel="stylesheet">
+	<!-- required -->	
+	<link rel="stylesheet" type="text/css" media="all" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" media="all" href="css/stellarnav.min.css">
+	<!-- required -->
+<style>
+/* styles for this sample only */
+*{ margin: 0; padding: 0; }
+body { height: 100%; height: 100%; font-size: 16px; font-family: 'Exo 2', sans-serif; background: #efefef; font-weight: 300; }
+.header { text-align: center; }
+.header a { padding: 50px 0; display: block; font-size: 48px; text-decoration: none; color: #555; }
+@media only screen and (max-width : 1000px) {
+	.stellarnav > ul > li > a { padding: 20px 23px; }
+}
+/* styles for this sample only */
+</style>
+
+</head>
+<body itemscope="itemscope" itemtype="http://schema.org/WebPage">
+	<div class="header">
+		<a href="#">StellarNav.js</a>
+	</div>
+	<div id="main-nav" class="stellarnav">
+		<ul>
+			<li><a href="">Dropdown</a>
+		    	<ul>
+		    		<li><a href="#">How deep?</a>
+		    			<ul>
+				    		<li><a href="#">Deep</a>
+				    			<ul>
+				    				<li><a href="#">Even deeper</a>
+				    					<ul>
+				    						<li><li><a href="#">Item</a></li></li>
+				    						<li><li><a href="#">Item</a></li></li>
+				    						<li><li><a href="#">Item</a></li></li>
+				    					</ul>
+				    				</li>
+				    				<li><a href="#">Item</a></li>
+				    				<li><a href="#">Item</a></li>
+				    				<li><a href="#">Item</a></li>
+				    			</ul>
+				    		</li>
+				    		<li><a href="#">Item</a></li>
+				    		<li><a href="#">Item</a></li>
+				    		<li><a href="#">Item</a></li>
+				    		<li><a href="#">Item</a></li>
+		    			</ul>
+		    		</li>
+		    		<li><a href="#">Item</a></li>
+		    		<li><a href="#">Item</a></li>
+		    		<li><a href="#">Here's a very long item. It can be as long as you want</a></li>
+		    		<li><a href="#">Item</a></li>
+		    	</ul>
+		    </li>
+		    <li><a href="">Item 2</a></li>
+		    <li><a href="">Item 3</a></li>
+		    <li><a href="">Item 4</a></li>
+		    <li><a href="">Item 5</a></li>
+		    <li><a href="">Item 6</a></li>
+		    <li class="drop-left"><a href="">Drop Left</a>
+		    	<ul>
+		    		<li><a href="#">How deep?</a>
+		    			<ul>
+				    		<li><a href="#">Deep</a>
+				    			<ul>
+				    				<li><a href="#">Even deeper</a>
+				    					<ul>
+				    						<li><li><a href="#">Item</a></li></li>
+				    						<li><li><a href="#">Item</a></li></li>
+				    						<li><li><a href="#">Item</a></li></li>
+				    					</ul>
+				    				</li>
+				    				<li><a href="#">Item</a></li>
+				    				<li><a href="#">Item</a></li>
+				    				<li><a href="#">Item</a></li>
+				    			</ul>
+				    		</li>
+				    		<li><a href="#">Item</a></li>
+				    		<li><a href="#">Item</a></li>
+				    		<li><a href="#">Item</a></li>
+				    		<li><a href="#">Item</a></li>
+		    			</ul>
+		    		</li>
+		    		<li><a href="#">Item</a></li>
+		    		<li><a href="#">Item</a></li>
+		    		<li><a href="#">Item</a></li>
+		    		<li><a href="#">Item</a></li>
+		    	</ul>
+		    </li>
+		</ul>
+	</div><!-- .stellar-nav -->
+	<script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+	<script type="text/javascript" src="js/stellarnav.min.js"></script>
+	<script type="text/javascript">
+		jQuery(document).ready(function($) {
+			jQuery('.stellarnav').stellarNav({
+				theme: 'light'
+			});
+		});
+	</script>
+</body>
+</html>

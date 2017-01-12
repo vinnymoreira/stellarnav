@@ -17,7 +17,7 @@
 .stellarnav > ul > li:hover > ul > li:hover > ul { opacity: 1; visibility: visible; top: 0; }
 
 /* .drop-left */
-.stellarnav > ul > li.drop-left:hover > ul { right: 0; }
+.stellarnav > ul > li.drop-left > ul { right: 0; }
 .stellarnav li.drop-left ul ul { left: auto; right: 220px; }
 
 /* light theme */

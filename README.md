@@ -1,6 +1,8 @@
 # StellarNav.js
 jQuery responsive multi-level dropdown menu designed to do most of the heavy CSS work for you.
 
+<a href="http://vinnymoreira.com/stellarnav-js-demo/">Click here</a> to see a live demo.
+
 ## Installation
 
 ### CSS

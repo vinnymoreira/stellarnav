@@ -18,7 +18,7 @@
 			theme     : 'plain', // adds default color to nav. (light, dark)
 			breakpoint: 768, // number in pixels to determine when the nav should turn mobile friendly
 			phoneBtn: false, // adds a click-to-call phone link to the top of menu - i.e.: "18009084500"
-	    	locationBtn: false, // adds a location link to the top of menu - i.e.: "/location/", "http://site.com/contact-us/"
+	    		locationBtn: false, // adds a location link to the top of menu - i.e.: "/location/", "http://site.com/contact-us/"
 			sticky     : false, // makes nav sticky on scroll (desktop only)
 			position: 'static', // 'static' or 'top' - when set to 'top', this forces the mobile nav to be placed absolutely on the very top of page 
 			showArrows: true, // shows dropdown arrows next to the items that have sub menus
@@ -155,6 +155,7 @@
 					
 					resetTriggers();
 					nav.addClass('mobile');
+					nav.removeClass('desktop');
 
 					// closes the menu when resizing window back to desktop
 					if( !nav.hasClass('active') && nav.find('ul:first').is(':visible') ) {

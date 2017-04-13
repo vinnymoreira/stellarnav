@@ -18,7 +18,7 @@
 			theme     : 'plain', // adds default color to nav. (light, dark)
 			breakpoint: 768, // number in pixels to determine when the nav should turn mobile friendly
 			phoneBtn: false, // adds a click-to-call phone link to the top of menu - i.e.: "18009084500"
-	    		locationBtn: false, // adds a location link to the top of menu - i.e.: "/location/", "http://site.com/contact-us/"
+	    	locationBtn: false, // adds a location link to the top of menu - i.e.: "/location/", "http://site.com/contact-us/"
 			sticky     : false, // makes nav sticky on scroll (desktop only)
 			position: 'static', // 'static' or 'top' - when set to 'top', this forces the mobile nav to be placed absolutely on the very top of page 
 			showArrows: true, // shows dropdown arrows next to the items that have sub menus
@@ -37,31 +37,50 @@
 				breakpoint = settings.breakpoint;
 			}
 
-			// adds a location page link to the beginning of nav
-			if (settings.locationBtn) {
-				
-				if(!settings.phoneBtn) {
-					var cssClass = 'full';
-				} else {
-					var cssClass = '';
-				}
-
-				var btn = '<li class="call-btn-location ' + cssClass + '"><a href="'+ settings.locationBtn +'"><i class="fa fa-map-marker"></i> Location</a></li>';
-				nav.find('ul:first').prepend(btn);
-
+			// css classes for main menu mobile buttons
+			if( settings.phoneBtn && settings.locationBtn ) {
+				var cssClass = 'third';
+			} else if( settings.phoneBtn || settings.locationBtn ) {
+				var cssClass = 'half';
+			} else {
+				var cssClass = 'full';
 			}
 
-			// adds a click-to-call link to the beginning of nav
+			// adds the toggle button to open and close nav 
+			nav.prepend('<a href="#" class="menu-toggle ' + cssClass + '"><i class="fa fa-bars"></i> Menu</a>');
+
+			// adds a click-to-call link
 			if (settings.phoneBtn) {
 				
+				/*
 				if(!settings.locationBtn) {
 					var cssClass = 'full';
 				} else {
 					var cssClass = '';
-				}
+				}*/
 
-				var btn = '<li class="call-btn-mobile ' + cssClass + '"><a href="tel:'+ settings.phoneBtn +'"><i class="fa fa-phone"></i> Call us</a></li>';
-				nav.find('ul:first').prepend(btn);
+				//var btn = '<li class="call-btn-mobile ' + cssClass + '"><a href="tel:'+ settings.phoneBtn +'"><i class="fa fa-phone"></i> Call us</a></li>';
+				var btn = '<a href="'+ settings.phoneBtn +'" class="call-btn-mobile ' + cssClass + '"><i class="fa fa-phone"></i> <span>Call us</span></a>';
+
+				nav.find('a.menu-toggle').after(btn);
+
+			}
+
+			// adds a location page link to the beginning of nav
+			if (settings.locationBtn) {
+				
+				/*
+				if(!settings.phoneBtn) {
+					var cssClass = 'full';
+				} else {
+					var cssClass = '';
+				}*/
+
+				//var btn = '<li class="location-btn-mobile ' + cssClass + '"><a href="'+ settings.locationBtn +'" target="_blank"><i class="fa fa-map-marker"></i> Location</a></li>';
+				
+				var btn = '<a href="'+ settings.locationBtn +'" class="location-btn-mobile ' + cssClass + '" target="_blank"><i class="fa fa-map-marker"></i> <span>Location</span></a>';
+
+				nav.find('a.menu-toggle').after(btn);
 
 			}
 
@@ -97,9 +116,6 @@
 				$('body').addClass('stellarnav-noscroll-x');
 			}
 					
-			// adds the toggle button to open and close nav 
-			nav.prepend('<a href="#" class="menu-toggle"><i class="fa fa-bars"></i> Menu</a>');
-
 			// opens and closes menu			
 			$('.menu-toggle').on('click', function(e) {
 				e.preventDefault();

@@ -51,16 +51,8 @@
 
 			// adds a click-to-call link
 			if (settings.phoneBtn) {
-				
-				/*
-				if(!settings.locationBtn) {
-					var cssClass = 'full';
-				} else {
-					var cssClass = '';
-				}*/
 
-				//var btn = '<li class="call-btn-mobile ' + cssClass + '"><a href="tel:'+ settings.phoneBtn +'"><i class="fa fa-phone"></i> Call us</a></li>';
-				var btn = '<a href="'+ settings.phoneBtn +'" class="call-btn-mobile ' + cssClass + '"><i class="fa fa-phone"></i> <span>Call us</span></a>';
+				var btn = '<a href="tel:'+ settings.phoneBtn +'" class="call-btn-mobile ' + cssClass + '"><i class="fa fa-phone"></i> <span>Call us</span></a>';
 
 				nav.find('a.menu-toggle').after(btn);
 
@@ -68,15 +60,6 @@
 
 			// adds a location page link to the beginning of nav
 			if (settings.locationBtn) {
-				
-				/*
-				if(!settings.phoneBtn) {
-					var cssClass = 'full';
-				} else {
-					var cssClass = '';
-				}*/
-
-				//var btn = '<li class="location-btn-mobile ' + cssClass + '"><a href="'+ settings.locationBtn +'" target="_blank"><i class="fa fa-map-marker"></i> Location</a></li>';
 				
 				var btn = '<a href="'+ settings.locationBtn +'" class="location-btn-mobile ' + cssClass + '" target="_blank"><i class="fa fa-map-marker"></i> <span>Location</span></a>';
 

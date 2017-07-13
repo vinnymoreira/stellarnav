@@ -147,7 +147,7 @@
 			
 			// check browser width in real-time
 			function windowCheck() {
-				var browserWidth = window.outerWidth;
+				var browserWidth = window.innerWidth;
 				
 				if(browserWidth <= breakpoint) {
 					// mobile/tablet nav

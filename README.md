@@ -47,8 +47,10 @@ jQuery('.stellarnav').stellarNav({
 	position: 'static',
 	showArrows: true,
 	closeBtn     : false,
-	scrollbarFix: false
-});	
+	scrollbarFix: false,
+  openingDelay:1,
+  openingSpeed:250
+});
 ```
 
 Attribute			| Type				| Default		| Description
@@ -62,6 +64,9 @@ Attribute			| Type				| Default		| Description
 `showArrows`	| *Boolean*		| `true`		| Shows dropdown arrows next to the items that have sub menus.
 `closeBtn`	| *Boolean*		| `false`		| Adds a close button to the end of nav.
 `scrollbarFix`	| *Boolean*		| `false`		| Fixes horizontal scrollbar issue on very long navs.
+`openingDelay`	| *Integer*		| `1`		| Delay before openning a menu on mouse hover
+`openingSpeed`	| *Integer*		| `250`		| Time to slideDown a menu
+
 
 ## Extra
 
@@ -89,4 +94,4 @@ For long dropdown menus towards the last navigation items, you may use the class
 </div>
 ```
 
-If this is not an option and you are still getting a scrollbar, you may also set the `scrollbarFix` option to `true`. 
+If this is not an option and you are still getting a scrollbar, you may also set the `scrollbarFix` option to `true`.

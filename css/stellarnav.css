@@ -1,5 +1,5 @@
 /*
- * Stellarnav.js 1.0.0
+ * Stellarnav.js 1.2.0
  * jQuery responsive multi-level dropdown menu designed to do most of the heavy CSS work for you.
  * Copyright (c) 2016 Vinny Moreira - http://vinnymoreira.com
  * Released under the MIT license
@@ -55,12 +55,6 @@ body.stellarnav-noscroll-x { overflow-x: hidden; }
 .stellarnav li.call-btn-mobile, .stellarnav li.location-btn-mobile { display: none; }
 .stellarnav li.open > a.dd-toggle i { -webkit-transform: rotate(135deg); -ms-transform: rotate(135deg); -o-transform: rotate(135deg); transform: rotate(135deg); }
 
-/* Fallback for slow javascript */
-@media only screen and (max-width : 768px) {
-	.stellarnav { overflow: hidden; display: block; }
-	.stellarnav ul { position: relative; display: none; }
-}
-
 /* mobile nav */
 .stellarnav .menu-toggle, .stellarnav .call-btn-mobile, .stellarnav .location-btn-mobile { color: #777; padding: 15px; box-sizing: border-box; }
 .stellarnav .full { width: 100%; }
@@ -102,6 +96,20 @@ body.stellarnav-noscroll-x { overflow-x: hidden; }
 .stellarnav.mobile.light li.call-btn-mobile { border-right: 1px solid rgba(0, 0, 0, .1); }
 .stellarnav.mobile.top { position: absolute; width: 100%; top: 0; left: 0; z-index: 9999; }
 .stellarnav.mobile li.has-sub > a:after, .stellarnav.mobile li li.has-sub > a:after, .stellarnav.mobile li.drop-left li.has-sub > a:after { display: none; }
+
+/* left and right positions */
+.stellarnav.mobile.right > ul, .stellarnav.mobile.left > ul { position: absolute; top: 0; bottom: 0; width: 100%; max-width: 280px; overflow-x: hidden; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+.stellarnav.mobile.right > ul { right: 0; }
+.stellarnav.mobile.right .close-menu, .stellarnav.mobile.left .close-menu { display: block; text-align: right; }
+.stellarnav.mobile.left > ul { left: 0; }
+/* left and right positions */
+
+/* Fallback for slow javascript load */
+@media only screen and (max-width : 768px) {
+	.stellarnav { overflow: hidden; display: block; }
+	.stellarnav ul { position: relative; display: none; }
+}
+
 /* mobile nav */
 @media only screen and (max-width : 420px) {
 	.stellarnav.mobile .call-btn-mobile.third span, .stellarnav.mobile .location-btn-mobile.third span { display: none; }

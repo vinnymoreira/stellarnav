@@ -1,5 +1,5 @@
 /*
- * Stellarnav.js 1.0.0
+ * Stellarnav.js 1.2.0
  * jQuery responsive multi-level dropdown menu designed to do most of the heavy CSS work for you.    
  *
  * Copyright (c) 2016 Vinny Moreira - http://vinnymoreira.com
@@ -86,11 +86,21 @@
 				nav.addClass('top');
 			}
 
+			if (settings.position == 'right') {
+				nav.addClass('right');
+				nav.find('ul:first').prepend('<li><a href="#" class="close-menu"><i class="fa fa-close"></i> Close Menu</a></li>');
+			}
+
+			if (settings.position == 'left') {
+				nav.addClass('left');
+				nav.find('ul:first').prepend('<li><a href="#" class="close-menu"><i class="fa fa-close"></i> Close Menu</a></li>');
+			}
+
 			if (!settings.showArrows) {
 				nav.addClass('hide-arrows');
 			}
 
-			if (settings.closeBtn) {
+			if (settings.closeBtn && !(settings.position == 'right' || settings.position == 'left')) {
 				// adds a link to end of nav to close it
 				nav.find('ul:first').append('<li><a href="#" class="close-menu"><i class="fa fa-close"></i> Close Menu</a></li>');
 			}
@@ -98,18 +108,45 @@
 			if (settings.scrollbarFix) {
 				$('body').addClass('stellarnav-noscroll-x');
 			}
-					
+
 			// opens and closes menu			
 			$('.menu-toggle').on('click', function(e) {
-				e.preventDefault();
-				nav.find('ul:first').stop(true, true).slideToggle(250);
-				nav.toggleClass('active');
+				e.stopPropagation();
+
+				// if nav position is left or right, uses fadeToggle instead of slideToggle
+				if (settings.position == 'left' || settings.position == 'right') {
+					nav.find('ul:first').stop(true, true).fadeToggle(250);
+					nav.toggleClass('active');
+
+					if(nav.hasClass('active') && nav.hasClass('mobile')) {
+						// closes the menu when clicked outside of it
+						$(document).on('click', function(event) {
+							// ensures menu hides only on mobile nav
+							if(nav.hasClass('mobile')) {
+							  	if (!$(event.target).closest(nav).length) {
+							  		nav.find('ul:first').stop(true, true).fadeOut(250);	
+							  		nav.removeClass('active');
+								}
+							}
+						});
+					}
+
+				} else {
+					// static position - normal open and close animation
+					nav.find('ul:first').stop(true, true).slideToggle(250);
+				}
 			});
 
-			// actives the close button
+			// activates the close button
 			$('.close-menu').click(function() {
-				nav.find('ul:first').stop(true, true).slideUp(250).toggleClass('active');
+				
 				nav.removeClass('active');
+
+				if (settings.position == 'left' || settings.position == 'right') {
+					nav.find('ul:first').stop(true, true).fadeToggle(250);
+				} else {
+					nav.find('ul:first').stop(true, true).slideUp(250).toggleClass('active');
+				}
 			});
 			
 

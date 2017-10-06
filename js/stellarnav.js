@@ -18,7 +18,7 @@
 			theme     : 'plain', // adds default color to nav. (light, dark)
 			breakpoint: 768, // number in pixels to determine when the nav should turn mobile friendly
 			phoneBtn: false, // adds a click-to-call phone link to the top of menu - i.e.: "18009084500"
-	    	locationBtn: false, // adds a location link to the top of menu - i.e.: "/location/", "http://site.com/contact-us/"
+	    		locationBtn: false, // adds a location link to the top of menu - i.e.: "/location/", "http://site.com/contact-us/"
 			sticky     : false, // makes nav sticky on scroll (desktop only)
 			position: 'static', // 'static' or 'top' - when set to 'top', this forces the mobile nav to be placed absolutely on the very top of page 
 			showArrows: true, // shows dropdown arrows next to the items that have sub menus
@@ -50,7 +50,7 @@
 			nav.prepend('<a href="#" class="menu-toggle ' + cssClass + '"><i class="fa fa-bars"></i> Menu</a>');
 
 			// adds a click-to-call link
-			if (settings.phoneBtn) {
+			if (settings.phoneBtn && !(settings.position == 'right' || settings.position == 'left')) {
 
 				var btn = '<a href="tel:'+ settings.phoneBtn +'" class="call-btn-mobile ' + cssClass + '"><i class="fa fa-phone"></i> <span>Call us</span></a>';
 
@@ -59,7 +59,7 @@
 			}
 
 			// adds a location page link to the beginning of nav
-			if (settings.locationBtn) {
+			if (settings.locationBtn && !(settings.position == 'right' || settings.position == 'left')) {
 				
 				var btn = '<a href="'+ settings.locationBtn +'" class="location-btn-mobile ' + cssClass + '" target="_blank"><i class="fa fa-map-marker"></i> <span>Location</span></a>';
 
@@ -86,14 +86,27 @@
 				nav.addClass('top');
 			}
 
+			if (settings.position == 'left' || settings.position == 'right') {
+				var closeBtn = '<a href="#" class="close-menu ' + cssClass + '"><i class="fa fa-close"></i> <span>Close</span></a>';
+				var phoneBtn = '<a href="tel:'+ settings.phoneBtn +'" class="call-btn-mobile ' + cssClass + '"><i class="fa fa-phone"></i></a>';
+				var locationBtn = '<a href="'+ settings.locationBtn +'" class="location-btn-mobile ' + cssClass + '" target="_blank"><i class="fa fa-map-marker"></i></a>';
+
+				nav.find('ul:first').prepend(closeBtn);
+				
+				if (settings.locationBtn) {
+					nav.find('ul:first').prepend(locationBtn);
+				}
+				if (settings.phoneBtn) {
+					nav.find('ul:first').prepend(phoneBtn);
+				}
+			}
+
 			if (settings.position == 'right') {
 				nav.addClass('right');
-				nav.find('ul:first').prepend('<li><a href="#" class="close-menu"><i class="fa fa-close"></i> Close Menu</a></li>');
 			}
 
 			if (settings.position == 'left') {
 				nav.addClass('left');
-				nav.find('ul:first').prepend('<li><a href="#" class="close-menu"><i class="fa fa-close"></i> Close Menu</a></li>');
 			}
 
 			if (!settings.showArrows) {

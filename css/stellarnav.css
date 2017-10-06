@@ -30,13 +30,13 @@
 .stellarnav.light { background: rgba(255, 255, 255, 1); }
 .stellarnav.light ul ul { background: rgba(255, 255, 255, 1); }
 .stellarnav.light li a { color: #000; }
-.stellarnav.light .menu-toggle, .stellarnav.light .call-btn-mobile, .stellarnav.light .location-btn-mobile { color: rgba(0, 0, 0, 1); }
+.stellarnav.light .menu-toggle, .stellarnav.light .call-btn-mobile, .stellarnav.light .location-btn-mobile, .stellarnav.light .close-menu { color: rgba(0, 0, 0, 1); }
 
 /* dark theme */
 .stellarnav.dark { background: rgba(0, 0, 0, 1); }
 .stellarnav.dark ul ul { background: rgba(0, 0, 0, 1); }
 .stellarnav.dark li a { color: #FFF; }
-.stellarnav.dark .menu-toggle, .stellarnav.dark .call-btn-mobile, .stellarnav.dark .location-btn-mobile { color: rgba(255, 255, 255, 1); }
+.stellarnav.dark .menu-toggle, .stellarnav.dark .call-btn-mobile, .stellarnav.dark .location-btn-mobile, .stellarnav.dark .close-menu { color: rgba(255, 255, 255, 1); }
 /* sticky nav */ 
 .stellarnav.fixed { position: fixed; width: 100%; top: 0; left: 0; z-index: 9999; }
 
@@ -56,15 +56,21 @@ body.stellarnav-noscroll-x { overflow-x: hidden; }
 .stellarnav li.open > a.dd-toggle i { -webkit-transform: rotate(135deg); -ms-transform: rotate(135deg); -o-transform: rotate(135deg); transform: rotate(135deg); }
 
 /* mobile nav */
-.stellarnav .menu-toggle, .stellarnav .call-btn-mobile, .stellarnav .location-btn-mobile { color: #777; padding: 15px; box-sizing: border-box; }
+.stellarnav .menu-toggle, .stellarnav .call-btn-mobile, .stellarnav .location-btn-mobile, .stellarnav .close-menu { color: #777; padding: 15px; box-sizing: border-box; }
 .stellarnav .full { width: 100%; }
 .stellarnav .half { width: 50%; }
 .stellarnav .third { width: 33%; text-align: center; }
 .stellarnav .location-btn-mobile.third { text-align: center; }
 .stellarnav .location-btn-mobile.half { text-align: right; }
 .stellarnav.light .third, .stellarnav.light .half { border-left: 1px solid rgba(0, 0, 0, .15); }
+.stellarnav.light.left .third, .stellarnav.light.left .half { border-bottom: 1px solid rgba(0, 0, 0, .15); }
+.stellarnav.light.right .third, .stellarnav.light.right .half { border-bottom: 1px solid rgba(0, 0, 0, .15); }
 .stellarnav.light .third:first-child, .stellarnav.light .half:first-child { border-left: 0; }
 .stellarnav.dark .third, .stellarnav.dark .half { border-left: 1px solid rgba(255, 255, 255, .15); }
+.stellarnav.dark.left .third, .stellarnav.dark.left .half { border-bottom: 1px solid rgba(255, 255, 255, .15); }
+.stellarnav.dark.right .third, .stellarnav.dark.right .half { border-bottom: 1px solid rgba(255, 255, 255, .15); }
+.stellarnav.light.left .menu-toggle, .stellarnav.light.right .menu-toggle { border-bottom: 0; }
+.stellarnav.dark.left .menu-toggle, .stellarnav.dark.right .menu-toggle { border-bottom: 0; }
 .stellarnav.dark .third:first-child, .stellarnav.dark .half:first-child { border-left: 0; }
 .stellarnav.mobile { position: static; }
 .stellarnav.mobile.fixed { position: static; }
@@ -100,8 +106,14 @@ body.stellarnav-noscroll-x { overflow-x: hidden; }
 /* left and right positions */
 .stellarnav.mobile.right > ul, .stellarnav.mobile.left > ul { position: absolute; top: 0; bottom: 0; width: 100%; max-width: 280px; overflow-x: hidden; overflow-y: auto; -webkit-overflow-scrolling: touch; }
 .stellarnav.mobile.right > ul { right: 0; }
-.stellarnav.mobile.right .close-menu, .stellarnav.mobile.left .close-menu { display: block; text-align: right; }
+.stellarnav.mobile.right .close-menu, .stellarnav.mobile.left .close-menu { display: inline-block; text-align: right; }
 .stellarnav.mobile.left > ul { left: 0; }
+.stellarnav.mobile.right .location-btn-mobile.half, .stellarnav.mobile.right .call-btn-mobile.half, .stellarnav.mobile.right .close-menu.half { text-align: center; }
+.stellarnav.mobile.right .location-btn-mobile.third, .stellarnav.mobile.right .call-btn-mobile.third, .stellarnav.mobile.right .close-menu.third { text-align: center; }
+.stellarnav.mobile.left .location-btn-mobile.half, .stellarnav.mobile.left .call-btn-mobile.half, .stellarnav.mobile.left .close-menu.half { text-align: center; }
+.stellarnav.mobile.left .location-btn-mobile.third, .stellarnav.mobile.left .call-btn-mobile.third, .stellarnav.mobile.left .close-menu.third { text-align: center; }
+.stellarnav.mobile.left .menu-toggle.half, .stellarnav.mobile.left .menu-toggle.third, .stellarnav.mobile.right .menu-toggle.half, .stellarnav.mobile.right .menu-toggle.third { text-align: left; }
+.stellarnav.mobile.left .close-menu.third span, .stellarnav.mobile.right .close-menu.third span { display: none; }
 /* left and right positions */
 
 /* Fallback for slow javascript load */

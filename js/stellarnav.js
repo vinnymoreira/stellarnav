@@ -147,6 +147,7 @@
 				} else {
 					// static position - normal open and close animation
 					nav.find('ul:first').stop(true, true).slideToggle(250);
+					nav.toggleClass('active');
 				}
 			});
 

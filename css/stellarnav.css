@@ -1,7 +1,7 @@
 /*
- * Stellarnav.js 1.2.0
- * jQuery responsive multi-level dropdown menu designed to do most of the heavy CSS work for you.
- * Copyright (c) 2016 Vinny Moreira - http://vinnymoreira.com
+ * Stellarnav.js 2.3.0
+ * Responsive, lightweight, multi-level dropdown menu.
+ * Copyright (c) 2018 Vinny Moreira - http://vinnymoreira.com
  * Released under the MIT license
  */
 /* all nav */
@@ -37,16 +37,16 @@
 .stellarnav.dark ul ul { background: rgba(0, 0, 0, 1); }
 .stellarnav.dark li a { color: #FFF; }
 .stellarnav.dark .menu-toggle, .stellarnav.dark .call-btn-mobile, .stellarnav.dark .location-btn-mobile, .stellarnav.dark .close-menu { color: rgba(255, 255, 255, 1); }
-/* sticky nav */ 
+/* sticky nav */
 .stellarnav.fixed { position: fixed; width: 100%; top: 0; left: 0; z-index: 9999; }
 
 /* only used when 'scrollbarFix' is set to true in the js. This fixes horizontal scrollbar caused by the dd menus that are very long.*/
 body.stellarnav-noscroll-x { overflow-x: hidden; }
 
 /* general styling */
-.stellarnav li.has-sub > a:after { content: '\f0d7'; font-family: 'FontAwesome'; margin-left: 10px; }
-.stellarnav li li.has-sub > a:after { content: '\f0da'; font-family: 'FontAwesome'; margin-left: 10px; }
-.stellarnav li.drop-left li.has-sub > a:after { float: left; content: '\f0d9'; font-family: 'FontAwesome'; margin-right: 10px; }
+.stellarnav li.has-sub > a:after { content: '\f107'; font-family: 'FontAwesome'; margin-left: 10px; }
+.stellarnav li li.has-sub > a:after { content: '\f105'; font-family: 'FontAwesome'; margin-left: 10px; }
+.stellarnav li.drop-left li.has-sub > a:after { float: left; content: '\f104'; font-family: 'FontAwesome'; margin-right: 10px; }
 .stellarnav.hide-arrows li.has-sub > a:after, .stellarnav.hide-arrows li li.has-sub > a:after, .stellarnav.hide-arrows li.drop-left li.has-sub > a:after { display: none; }
 .stellarnav .menu-toggle, .stellarnav .close-menu, .stellarnav .call-btn-mobile, .stellarnav .location-btn-mobile { display: none; text-transform: uppercase; text-decoration: none; }
 .stellarnav .dd-toggle { display: none; position: absolute; top: 0; right: 0; padding: 0; width: 48px; height: 48px; text-align: center; z-index: 9999; border: 0; }
@@ -89,7 +89,7 @@ body.stellarnav-noscroll-x { overflow-x: hidden; }
 .stellarnav.mobile > ul { border-top: 1px solid rgba(255, 255, 255, .15); }
 .stellarnav.mobile.light li a { border-bottom: 1px solid rgba(0, 0, 0, .15); }
 .stellarnav.mobile.light > ul { border-top: 1px solid rgba(0, 0, 0, .15); }
-.stellarnav.mobile li a.dd-toggle { border: 0; } 
+.stellarnav.mobile li a.dd-toggle { border: 0; }
 .stellarnav.mobile.light li a.dd-toggle { border: 0; }
 .stellarnav.mobile .menu-toggle, .stellarnav.mobile .dd-toggle, .stellarnav.mobile .close-menu, .stellarnav.mobile .call-btn-mobile, .stellarnav.mobile .location-btn-mobile { display: inline-block; }
 .stellarnav.mobile li.call-btn-mobile { border-right: 1px solid rgba(255, 255, 255, .1); box-sizing: border-box; }
@@ -104,7 +104,7 @@ body.stellarnav-noscroll-x { overflow-x: hidden; }
 .stellarnav.mobile li.has-sub > a:after, .stellarnav.mobile li li.has-sub > a:after, .stellarnav.mobile li.drop-left li.has-sub > a:after { display: none; }
 
 /* left and right positions */
-.stellarnav.mobile.right > ul, .stellarnav.mobile.left > ul { position: absolute; top: 0; bottom: 0; width: 100%; max-width: 280px; overflow-x: hidden; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+.stellarnav.mobile.right > ul, .stellarnav.mobile.left > ul { position: fixed; top: 0; bottom: 0; width: 100%; max-width: 280px; overflow-x: hidden; overflow-y: auto; -webkit-overflow-scrolling: touch; }
 .stellarnav.mobile.right > ul { right: 0; }
 .stellarnav.mobile.right .close-menu, .stellarnav.mobile.left .close-menu { display: inline-block; text-align: right; }
 .stellarnav.mobile.left > ul { left: 0; }
@@ -115,6 +115,19 @@ body.stellarnav-noscroll-x { overflow-x: hidden; }
 .stellarnav.mobile.left .menu-toggle.half, .stellarnav.mobile.left .menu-toggle.third, .stellarnav.mobile.right .menu-toggle.half, .stellarnav.mobile.right .menu-toggle.third { text-align: left; }
 .stellarnav.mobile.left .close-menu.third span, .stellarnav.mobile.right .close-menu.third span { display: none; }
 /* left and right positions */
+/* mega dd */
+
+.stellarnav.desktop li.mega li { display: inline-block; vertical-align: top; margin-left: -4px; }
+.stellarnav.desktop li.mega li li { display: block; margin-left: 0; }
+.stellarnav.desktop li.mega ul ul { width: auto; }
+.stellarnav.desktop > ul > li.mega { position: inherit; }
+.stellarnav.desktop > ul > li.mega > ul { width: 100%; }
+.stellarnav.desktop > ul > li.mega > ul li.has-sub ul { display: block; position: relative; left: auto; }
+.stellarnav.desktop > ul > li.mega > ul > li { padding-bottom: 15px; box-sizing: border-box; }
+.stellarnav.desktop li.mega li li a { padding: 5px 15px; }
+.stellarnav.desktop li.mega li.has-sub a:after { display: none; }
+.stellarnav.desktop > ul > li.mega > ul > li > a { color: yellow; }
+/* mega dd */
 
 /* Fallback for slow javascript load */
 @media only screen and (max-width : 768px) {

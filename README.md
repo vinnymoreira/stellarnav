@@ -49,7 +49,7 @@ jQuery('.stellarnav').stellarNav({
 	phoneBtn: '',
 	locationBtn: '',
 	closeBtn: false,
-  mobileMode: false,
+  	mobileMode: false,
 	scrollbarFix: false
 });
 ```

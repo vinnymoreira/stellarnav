@@ -12,10 +12,9 @@
 <style>
 /* styles for this sample only */
 *{ margin: 0; padding: 0; }
-body { height: 3200px; font-size: 16px; font-family: 'Exo 2', sans-serif; background: #efefef; color: #555; }
+body { height: 3200px; font-size: 16px; font-family: 'Exo 2', sans-serif; background: #efefef; font-weight: 300; }
 .header { text-align: center; }
-.header a { padding: 30px 0 0; display: block; font-size: 48px; text-decoration: none; color: #555; }
-.header p { margin: 10px 0 40px 0; font-size: 18px; }
+.header a { padding: 50px 0; display: block; font-size: 48px; text-decoration: none; color: #555; }
 .container { max-width: 1200px; margin: 0 auto; }
 @media only screen and (max-width : 1000px) {
 	.stellarnav > ul > li > a { padding: 20px 23px; }
@@ -24,32 +23,16 @@ body { height: 3200px; font-size: 16px; font-family: 'Exo 2', sans-serif; backgr
 </style>
 
 </head>
-
 <body>
 	<div class="header">
 		<a href="#">StellarNav.js</a>
-		<p>Responsive, Lightweight, Multi-Level Dropdown Menu.</p>
 	</div>
 	<div class="stellarnav">
 		<ul>
-			<li><a href="">Dropdown</a>
+			<li class="mega" data-column="5"><a href="">Mega Dropdown</a>
 		    	<ul>
-						<li><a href="#">How deep?</a>
+		    		<li><a href="#">How deep?</a>
 		    			<ul>
-				    		<li><a href="#">Deep</a>
-				    			<ul>
-				    				<li><a href="#">Even deeper</a>
-				    					<ul>
-				    						<li><a href="#">Item</a></li>
-				    						<li><a href="#">Item</a></li>
-				    						<li><a href="#">Item</a></li>
-				    					</ul>
-				    				</li>
-				    				<li><a href="#">Item</a></li>
-				    				<li><a href="#">Item</a></li>
-				    				<li><a href="#">Item</a></li>
-				    			</ul>
-				    		</li>
 				    		<li><a href="#">Item</a></li>
 				    		<li><a href="#">Item</a></li>
 				    		<li><a href="#">Item</a></li>
@@ -66,11 +49,11 @@ body { height: 3200px; font-size: 16px; font-family: 'Exo 2', sans-serif; backgr
 		    		</li>
 		    		<li><a href="#">Item</a>
 		    			<ul>
-		    				<li><a href="#">Deeper</a>
+		    				<li><a href="#">Even deeper</a>
 		    					<ul>
-		    						<li><a href="#">Item</a></li>
-		    						<li><a href="#">Item</a></li>
-		    						<li><a href="#">Item</a></li>
+		    						<li><li><a href="#">Item</a></li></li>
+		    						<li><li><a href="#">Item</a></li></li>
+		    						<li><li><a href="#">Item</a></li></li>
 		    					</ul>
 		    				</li>
 		    				<li><a href="#">Item</a></li>
@@ -86,9 +69,62 @@ body { height: 3200px; font-size: 16px; font-family: 'Exo 2', sans-serif; backgr
 				    		<li><a href="#">Item</a></li>
 		    			</ul>
 		    		</li>
+		    		<li><a href="#">Item</a>
+		    			<ul>
+				    		<li><a href="#">Item</a></li>
+				    		<li><a href="#">Item</a></li>
+				    		<li><a href="#">Item</a></li>
+				    		<li><a href="#">Item</a></li>
+		    			</ul>
+		    		</li>
+		    		<li><a href="#">How deep?</a>
+		    			<ul>
+				    		<li><a href="#">Item</a></li>
+				    		<li><a href="#">Item</a></li>
+				    		<li><a href="#">Item</a></li>
+				    		<li><a href="#">Item</a></li>
+		    			</ul>
+		    		</li>
+		    		<li><a href="#">Item</a>
+		    			<ul>
+				    		<li><a href="#">Item</a></li>
+				    		<li><a href="#">Item</a></li>
+				    		<li><a href="#">Item</a></li>
+				    		<li><a href="#">Item</a></li>
+		    			</ul>
+		    		</li>
+		    		<li><a href="#">Item</a>
+		    			<ul>
+		    				<li><a href="#">Even deeper</a>
+		    					<ul>
+		    						<li><li><a href="#">Item</a></li></li>
+		    						<li><li><a href="#">Item</a></li></li>
+		    						<li><li><a href="#">Item</a></li></li>
+		    					</ul>
+		    				</li>
+		    				<li><a href="#">Item</a></li>
+		    				<li><a href="#">Item</a></li>
+		    				<li><a href="#">Item</a></li>
+		    			</ul>
+		    		</li>
+		    		<li><a href="#">Here's a very long item.</a>
+		    			<ul>
+				    		<li><a href="#">Item</a></li>
+				    		<li><a href="#">Item</a></li>
+				    		<li><a href="#">Item</a></li>
+				    		<li><a href="#">Item</a></li>
+		    			</ul>
+		    		</li>
+		    		<li><a href="#">Item</a>
+		    			<ul>
+				    		<li><a href="#">Item</a></li>
+				    		<li><a href="#">Item</a></li>
+				    		<li><a href="#">Item</a></li>
+				    		<li><a href="#">Item</a></li>
+		    			</ul>
+		    		</li>
 		    	</ul>
 		    </li>
-
 		    <li><a href="">Item 2</a></li>
 		    <li><a href="">Item 3</a></li>
 		    <li><a href="">Item 4</a></li>
@@ -102,9 +138,9 @@ body { height: 3200px; font-size: 16px; font-family: 'Exo 2', sans-serif; backgr
 				    			<ul>
 				    				<li><a href="#">Even deeper</a>
 				    					<ul>
-				    						<li><a href="#">Item</a></li>
-				    						<li><a href="#">Item</a></li>
-				    						<li><a href="#">Item</a></li>
+				    						<li><li><a href="#">Item</a></li></li>
+				    						<li><li><a href="#">Item</a></li></li>
+				    						<li><li><a href="#">Item</a></li></li>
 				    					</ul>
 				    				</li>
 				    				<li><a href="#">Item</a></li>
@@ -129,7 +165,7 @@ body { height: 3200px; font-size: 16px; font-family: 'Exo 2', sans-serif; backgr
 
 	<!-- required -->
 	<script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
-	<script type="text/javascript" src="js/stellarnav.min.js"></script>
+	<script type="text/javascript" src="js/stellarnav.js"></script>
 	<script type="text/javascript">
 		jQuery(document).ready(function($) {
 			jQuery('.stellarnav').stellarNav({

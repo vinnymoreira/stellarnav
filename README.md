@@ -1,14 +1,13 @@
 # StellarNav.js
-jQuery responsive, lightweight, multi-level dropdown menu. Ideal solution for long navigation menus with lots of items.
+Responsive, lightweight, multi-level dropdown menu. Stellarnav is a great solution for long navigation menus with lots of menu items.
 
 <a href="http://vinnymoreira.com/stellarnav-js-demo/">Click here</a> to see StellarNav.js in action.
 
 ## Installation
 
 ### CSS
-Include FontAwesome for the menu icons and the StellarNav stylesheet.
+Include the StellarNav stylesheet.
 ```html
-<link rel="stylesheet" type="text/css" media="all" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css" media="all" href="css/stellarnav.min.css">
 ```
 ### HTML
@@ -50,8 +49,9 @@ jQuery('.stellarnav').stellarNav({
 	phoneBtn: '',
 	locationBtn: '',
 	closeBtn: false,
+  mobileMode: false,
 	scrollbarFix: false
-});	
+});
 ```
 
 Attribute			| Type				| Default		| Description
@@ -64,10 +64,11 @@ Attribute			| Type				| Default		| Description
 `openingSpeed`	| *Integer*		| `250`		| Controls how fast the dropdowns open in milliseconds.
 `closingDelay`	| *Integer*		| `250`		| Controls how long the dropdowns stay open for in milliseconds.
 `showArrows`	| *Boolean*		| `true`		| Shows dropdown arrows next to the items that have sub menus.
-`phoneBtn`	| *String*		| `[empty]`		| Adds a click-to-call phone link to the top of menu - i.e.: "18009084500".
-`locationBtn`	| *String*		| `[empty]`		| Adds a location link to the top of menu - i.e.: "/location/", "http://site.com/contact-us/".
+`phoneBtn`	| *String*		| `''`		| Adds a click-to-call phone link to the top of menu - i.e.: "18009084500".
+`locationBtn`	| *String*		| `''`		| Adds a location link to the top of menu - i.e.: "/location/", "http://site.com/contact-us/".
 `closeBtn`	| *Boolean*		| `false`		| Adds a close button to the end of nav.
-`scrollbarFix`	| *Boolean*		| `false`		| Fixes horizontal scrollbar issue on very long navs.
+`mobileMode`	| *Boolean*		| `false`		| Turns the menu mobile friendly by default.
+`scrollbarFix`	| *Boolean*		| `false`		| Fixes horizontal scrollbar issue on very long menus.
 
 ## Mega Dropdowns
 
@@ -98,6 +99,12 @@ You can turn any dropdown into a mega dropdown menu by simply adding a class of 
 
 ## Extra
 
+### Open / Close Menu
+
+You can add the css classes `stellarnav-open` or `stellarnav-close` to any html element on the page to activate opening or closing of menu on click.
+
+### Drop Left
+
 For long dropdown menus and for some of the last navigation items, you may use the class `drop-left` to the list item so that the dropdown drops leftward. This prevents menu from breaking the grid and getting a horizontal scrollbar.
 
 ```html
@@ -122,4 +129,4 @@ For long dropdown menus and for some of the last navigation items, you may use t
 </div>
 ```
 
-If this is not an option and you are still getting a scrollbar, you may also set the `scrollbarFix` option to `true`. 
+If this is not an option and you are still getting a scrollbar, you may also set the `scrollbarFix` option to `true`.

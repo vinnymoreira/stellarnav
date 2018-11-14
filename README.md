@@ -27,9 +27,9 @@ Include `stellarnav.min.js` and call `stellarNav()`.
 ```javascript
 <script type="text/javascript" src="js/stellarnav.js"></script>
 <script type="text/javascript">
-	jQuery(document).ready(function($) {
-		jQuery('.stellarnav').stellarNav();
-	});
+jQuery(document).ready(function($) {
+	jQuery('.stellarnav').stellarNav();
+});
 </script>
 ```
 ## Options

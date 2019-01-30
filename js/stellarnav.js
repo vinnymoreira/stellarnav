@@ -1,5 +1,5 @@
 /*
- * Stellarnav.js 2.5.0
+ * Stellarnav.js 2.6.0
  * Responsive, lightweight, multi-level dropdown menu.
  * Copyright (c) 2018 Vinny Moreira - http://vinnymoreira.com
  * Released under the MIT license
@@ -22,8 +22,11 @@
 			closingDelay: 250, // controls how long the dropdowns stay open for in milliseconds
 			showArrows: true, // shows dropdown arrows next to the items that have sub menus
 			phoneBtn: '', // adds a click-to-call phone link to the top of menu - i.e.: "18009084500"
-	    locationBtn: '', // adds a location link to the top of menu - i.e.: "/location/", "http://site.com/contact-us/"
+			phoneLabel: 'Call Us', // label for the phone button
+			locationBtn: '', // adds a location link to the top of menu - i.e.: "/location/", "http://site.com/contact-us/"
+			locationLabel: 'Location', // label for the location button
 			closeBtn: false, // adds a close button to the end of nav
+			closeLabel: 'Close', // label for the close button
 			mobileMode: false,
 			scrollbarFix: false // fixes horizontal scrollbar issue on very long navs
 		}, options );
@@ -45,6 +48,24 @@
 				menuLabel = '';
 			}
 
+			if (settings.phoneLabel) {
+				phoneLabel = settings.phoneLabel;
+			} else {
+				phoneLabel = '';
+			}
+
+			if (settings.locationLabel) {
+				locationLabel = settings.locationLabel;
+			} else {
+				locationLabel = '';
+			}
+
+			if (settings.closeLabel) {
+				closeLabel = settings.closeLabel;
+			} else {
+				closeLabel = '';
+			}
+
 			// css classes for main menu mobile buttons
 			if( settings.phoneBtn && settings.locationBtn ) {
 				var cssClass = 'third';
@@ -63,13 +84,13 @@
 
 			// adds a click-to-call link
 			if (settings.phoneBtn && !(settings.position == 'right' || settings.position == 'left')) {
-				var btn = '<a href="tel:'+ settings.phoneBtn +'" class="call-btn-mobile ' + cssClass + '"><svg id="icon-phone"></svg> <span>Call Us</span></a>';
+				var btn = '<a href="tel:'+ settings.phoneBtn +'" class="call-btn-mobile ' + cssClass + '"><svg id="icon-phone"></svg> <span>' + phoneLabel + '</span></a>';
 				nav.find('a.menu-toggle').after(btn);
 			}
 
 			// adds a location page link to the beginning of nav
 			if (settings.locationBtn && !(settings.position == 'right' || settings.position == 'left')) {
-				var btn = '<a href="'+ settings.locationBtn +'" class="location-btn-mobile ' + cssClass + '" target="_blank"><svg id="icon-location"></svg> <span>Location</span></a>';
+				var btn = '<a href="'+ settings.locationBtn +'" class="location-btn-mobile ' + cssClass + '" target="_blank"><svg id="icon-location"></svg> <span>' + locationLabel + '</span></a>';
 				nav.find('a.menu-toggle').after(btn);
 			}
 
@@ -77,7 +98,7 @@
 			if (settings.sticky) {
 				navPos = nav.offset().top;
 				if(width >= breakpoint) {
-					$(window).bind('scroll', function() {
+					$(window).on('scroll', function() {
 		         if ($(window).scrollTop() > navPos) {
 		             nav.addClass('fixed');
 		         }
@@ -93,7 +114,7 @@
 			}
 
 			if (settings.position == 'left' || settings.position == 'right') {
-				var closeBtn = '<a href="#" class="close-menu ' + cssClass + '"><span class="icon-close"></span> Close</a>';
+				var closeBtn = '<a href="#" class="close-menu ' + cssClass + '"><span class="icon-close"></span>' + closeLabel + '</a>';
 				var phoneBtn = '<a href="tel:'+ settings.phoneBtn +'" class="call-btn-mobile ' + cssClass + '"><svg id="icon-phone"></svg></a>';
 				var locationBtn = '<a href="'+ settings.locationBtn +'" class="location-btn-mobile ' + cssClass + '" target="_blank"><svg id="icon-location"></svg></i></a>';
 
@@ -121,7 +142,7 @@
 
 			if (settings.closeBtn && !(settings.position == 'right' || settings.position == 'left')) {
 				// adds a link to end of nav to close it
-				nav.find('ul:first').append('<li><a href="#" class="close-menu"><i class="fa fa-close"></i> Close Menu</a></li>');
+				nav.find('ul:first').append('<li><a href="#" class="close-menu"><span class="icon-close"></span> ' + closeLabel + '</a></li>');
 			}
 
 			if (settings.scrollbarFix) {

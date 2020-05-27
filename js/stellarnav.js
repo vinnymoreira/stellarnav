@@ -211,8 +211,14 @@
 			});
 
 
-			// adds toggle button to li items that have children
 			nav.find('li a').each(function() {
+
+        $(this).on('click', function () {
+          if(!$(this).is('[disabled]')) { // not a submenu
+            console.log('close menu');
+          }
+        });
+  			// adds toggle button to li items that have children
 				if ($(this).next().length > 0) {
 					$(this).parent('li').addClass('has-sub').append('<a class="dd-toggle" href="#"><span class="icon-plus"></span></a>');
 				}
@@ -246,9 +252,23 @@
 					} else {
 						// normal dropdown
 						// first-level
-						$(this).on(settings.openingEvent, function(){
-							$(this).children('ul').stop(true, true).slideDown(settings.openingSpeed);
-						});
+            if(settings.openingEvent=='click') {
+              $(this).on(settings.openingEvent, function(){
+                if(!$(this).is('[disabled]')
+                $(this).children('ul').stop(true, true).slideToggle(settings.openingSpeed);
+              });
+              $(this).on('mouseenter', function(){
+                if($(nav).find('ul ul a:visible:not([disabled])').length) {
+                  $(this).children('ul').stop(true, true).slideDown(settings.openingSpeed);
+                }
+              });
+            }
+            else {
+              $(this).on('mouseenter', function(){
+                $(this).children('ul').stop(true, true).slideDown(settings.openingSpeed);
+              });
+            }
+
 						$(this).on('mouseleave', function(){
 							$(this).children('ul').stop(true, true).delay(settings.closingDelay).slideUp(settings.openingSpeed);
 						});

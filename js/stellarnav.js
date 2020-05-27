@@ -19,6 +19,7 @@
 			sticky: false, // makes nav sticky on scroll (desktop only)
 			position: 'static', // 'static', 'top', 'left', 'right' - when set to 'top', this forces the mobile nav to be placed absolutely on the very top of page
 			openingSpeed: 250, // how fast the dropdown should open in milliseconds
+      openingEvent: 'mouseenter', // mouseenter or click to open main menu
 			closingDelay: 250, // controls how long the dropdowns stay open for in milliseconds
 			showArrows: true, // shows dropdown arrows next to the items that have sub menus
 			phoneBtn: '', // adds a click-to-call phone link to the top of menu - i.e.: "18009084500"
@@ -28,7 +29,7 @@
 			closeBtn: false, // adds a close button to the end of nav
 			closeLabel: 'Close', // label for the close button
 			mobileMode: false,
-			scrollbarFix: false // fixes horizontal scrollbar issue on very long navs
+			scrollbarFix: false, // fixes horizontal scrollbar issue on very long navs
 		}, options );
 
 		return this.each( function() {
@@ -225,7 +226,7 @@
 			});
 
 			var resetTriggers = function() {
-				nav.find('li').off('mouseenter');
+				nav.find('li').off(settings.openingEvent);
 				nav.find('li').off('mouseleave');
 			}
 
@@ -236,7 +237,7 @@
 				$(parentItems).each(function() {
 					if( $(this).hasClass('mega') ) {
 						// mega dropdown
-						$(this).on('mouseenter', function(){
+						$(this).on(settings.openingEvent, function(){
 							$(this).find('ul').first().stop(true, true).slideDown(settings.openingSpeed);
 						});
 						$(this).on('mouseleave', function(){
@@ -245,7 +246,7 @@
 					} else {
 						// normal dropdown
 						// first-level
-						$(this).on('mouseenter', function(){
+						$(this).on(settings.openingEvent, function(){
 							$(this).children('ul').stop(true, true).slideDown(settings.openingSpeed);
 						});
 						$(this).on('mouseleave', function(){

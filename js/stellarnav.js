@@ -20,6 +20,7 @@
 			position: 'static', // 'static', 'top', 'left', 'right' - when set to 'top', this forces the mobile nav to be placed absolutely on the very top of page
 			openingSpeed: 250, // how fast the dropdown should open in milliseconds
       openingEvent: 'mouseenter', // mouseenter or click to open main menu
+      openingSpeed: 250, // how fast the dropdown should open in milliseconds
 			closingDelay: 250, // controls how long the dropdowns stay open for in milliseconds
 			showArrows: true, // shows dropdown arrows next to the items that have sub menus
 			phoneBtn: '', // adds a click-to-call phone link to the top of menu - i.e.: "18009084500"
@@ -29,7 +30,7 @@
 			closeBtn: false, // adds a close button to the end of nav
 			closeLabel: 'Close', // label for the close button
 			mobileMode: false,
-			scrollbarFix: false, // fixes horizontal scrollbar issue on very long navs
+			scrollbarFix: false // fixes horizontal scrollbar issue on very long navs
 		}, options );
 
 		return this.each( function() {
@@ -101,10 +102,10 @@
 				if(width >= breakpoint) {
 					$(window).on('scroll', function() {
 		         if ($(window).scrollTop() > navPos) {
-		             nav.addClass('fixed');
+	             nav.addClass('fixed');
 		         }
 		         else {
-		             nav.removeClass('fixed');
+	             nav.removeClass('fixed');
 		         }
 			    });
 				}
@@ -212,12 +213,6 @@
 
 
 			nav.find('li a').each(function() {
-
-        $(this).on('click', function () {
-          if(!$(this).is('[disabled]')) { // not a submenu
-            console.log('close menu');
-          }
-        });
   			// adds toggle button to li items that have children
 				if ($(this).next().length > 0) {
 					$(this).parent('li').addClass('has-sub').append('<a class="dd-toggle" href="#"><span class="icon-plus"></span></a>');
@@ -253,12 +248,11 @@
 						// normal dropdown
 						// first-level
             if(settings.openingEvent=='click') {
-              $(this).on(settings.openingEvent, function(){
-                if(!$(this).is('[disabled]')
-                $(this).children('ul').stop(true, true).slideToggle(settings.openingSpeed);
+              $(this).on(settings.openingEvent, function(e){
+                $(e.target).parent().children('ul').slideToggle(settings.openingSpeed);
               });
               $(this).on('mouseenter', function(){
-                if($(nav).find('ul ul a:visible:not([disabled])').length) {
+                if($(nav).find('ul ul a:visible').length) {
                   $(this).children('ul').stop(true, true).slideDown(settings.openingSpeed);
                 }
               });
@@ -269,13 +263,14 @@
               });
             }
 
-						$(this).on('mouseleave', function(){
-							$(this).children('ul').stop(true, true).delay(settings.closingDelay).slideUp(settings.openingSpeed);
+						$(this).on('mouseleave', function(e){
+              if(e.originalEvent.x>0 && e.originalEvent.y>0)
+							 $(this).children('ul').stop(true, true).delay(settings.closingDelay).slideUp(settings.openingSpeed);
 						});
 
 						// second level and below
 						$(this).find('li.has-sub').on('mouseenter', function(){
-							$(this).children('ul').stop(true, true).slideDown(settings.openingSpeed);
+							$(this).children('ul').stop(true, true).delay(settings.closingDelay).slideDown(settings.openingSpeed);
 						});
 						$(this).find('li.has-sub').on('mouseleave', function(){
 							$(this).children('ul').stop(true, true).delay(settings.closingDelay).slideUp(settings.openingSpeed);

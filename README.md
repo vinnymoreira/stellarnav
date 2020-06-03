@@ -44,6 +44,7 @@ jQuery('.stellarnav').stellarNav({
   sticky: false, // makes nav sticky on scroll (desktop only)
   position: 'static', // 'static', 'top', 'left', 'right' - when set to 'top', this forces the mobile nav to be placed absolutely on the very top of page
   openingSpeed: 250, // how fast the dropdown should open in milliseconds
+  openingEvent: 'hover', // hover or click to open main menu
   closingDelay: 250, // controls how long the dropdowns stay open for in milliseconds
   showArrows: true, // shows dropdown arrows next to the items that have sub menus
   phoneBtn: '', // adds a click-to-call phone link to the top of menu - i.e.: "18009084500"
@@ -53,6 +54,7 @@ jQuery('.stellarnav').stellarNav({
   closeBtn: false, // adds a close button to the end of nav
   closeLabel: 'Close', // label for the close button
   mobileMode: false,
+  mobileOpenOnClick: false,  // true to open submenu with click in mobile view
   scrollbarFix: false // fixes horizontal scrollbar issue on very long navs
 });
 ```
@@ -63,8 +65,9 @@ Attribute			| Type				| Default		| Description
 `breakpoint`	| *Integer*		| `768`		| Number in pixels to determine when the nav should turn mobile friendly.
 `menuLabel`	| *String*		| `Menu`		| Label (text) for the mobile nav.
 `sticky`	| *Boolean*		| `false`		| Makes nav sticky on scroll.
-`position`	| *String*		| `static`		| [static, top, left, right] - When set to 'top', this forces the mobile nav to be placed absolutely on the very top of page. When set to 'left' or 'right', mobile nav fades in/out from left or right, accordingly.  
+`position`	| *String*		| `static`		| [static, top, left, right] - When set to 'top', this forces the mobile nav to be placed absolutely on the very top of page. When set to 'left' or 'right', mobile nav fades in/out from left or right, accordingly.
 `openingSpeed`	| *Integer*		| `250`		| Controls how fast the dropdowns open in milliseconds.
+`openingEvent`  | *String*      | `hover`  | hover or click to open main menu
 `closingDelay`	| *Integer*		| `250`		| Controls how long the dropdowns stay open for in milliseconds.
 `showArrows`	| *Boolean*		| `true`		| Shows dropdown arrows next to the items that have sub menus.
 `phoneBtn`	| *String*		| `''`		| Adds a click-to-call phone link to the top of menu - i.e.: "18009084500".
@@ -74,6 +77,7 @@ Attribute			| Type				| Default		| Description
 `closeBtn`	| *Boolean*		| `false`		| Adds a close button to the end of nav.
 `closeLabel`	| *String*		| `Close`		| Label (text) for the close button.
 `mobileMode`	| *Boolean*		| `false`		| Turns the menu mobile friendly by default.
+`mobileOpenOnClick`| *Boolean*| `false`  | true to open submenu with click in mobile view
 `scrollbarFix`	| *Boolean*		| `false`		| Fixes horizontal scrollbar issue on very long menus.
 
 ## Mega Dropdowns

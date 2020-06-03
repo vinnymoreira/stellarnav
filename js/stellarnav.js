@@ -230,10 +230,9 @@
       });
 
       var resetTriggers = function() {
-        $nav.find('li').off('click.nav mouseenter.nav mouseleave.nav');
-//        $nav.find('li').off('mouseenter.nav');
-//        $nav.find('li').off('mouseleave.nav');
-        $nav.find('li a').off('click.nav');
+        // $nav.find('li').off('click.nav mouseenter.nav mouseleave.nav');
+        $('li', $nav).off('click.nav mouseenter.nav mouseleave.nav');
+        $nav.find('li a').off('click.nav mouseenter.nav');
       }
 
       // defines top level items
@@ -286,13 +285,12 @@
               });
               // hide on action
               $(this).find('li:not(.has-sub) > a').on('click.nav', function(){
-                console.log($(this).parent('ul'));
                 $nav.find('ul ul').hide();
               });
             }
           });
         }
-        else {
+        else { // mobile - view
           // open sub-menu with mouseover
           $parentItems.each(function() {
             if(settings.mobileOpenOnClick && $(this).hasClass('has-sub')) {
@@ -317,13 +315,12 @@
       function windowCheck() {
         var browserWidth = window.innerWidth;
 
-        if(browserWidth <= breakpoint || settings.mobileMode) {
-          // mobile/tablet nav
+        if(browserWidth <= breakpoint || settings.mobileMode) { // mobile/tablet nav
+          $nav.addClass('mobile');
+          $nav.removeClass('desktop');
 
           resetTriggers();
           setTriggers();
-          $nav.addClass('mobile');
-          $nav.removeClass('desktop');
 
           // closes the menu when resizing window back to desktop
           if( !$nav.hasClass('active') && $nav.find('ul:first').is(':visible') ) {
@@ -336,8 +333,7 @@
             $(this).find('ul').first().children().removeAttr('style');
           });
 
-        } else {
-          // desktop nav
+        } else { // desktop nav
           $nav.addClass('desktop');
           $nav.removeClass('mobile');
 

@@ -30,8 +30,10 @@
       closeBtn: false, // adds a close button to the end of nav
       closeLabel: 'Close', // label for the close button
       mobileMode: false,
-      mobileOpenOnClick: false,  //
-      scrollbarFix: false // fixes horizontal scrollbar issue on very long navs
+      mobileOpenOnClick: false, // true to open submenu with click in mobile view
+      scrollbarFix: false, // fixes horizontal scrollbar issue on very long navs
+		  onMobileMode: function () {}, // triggered after enter Mobile-Mode
+		  onDesktopMode: function () {} // triggered after enter Desktop-Mode
     }, options );
 
     return this.each( function() {
@@ -149,7 +151,7 @@
 
       if (settings.closeBtn && !(settings.position == 'right' || settings.position == 'left')) {
         // adds a link to end of nav to close it
-        $nav.find('ul:first').append('<li><a href="#" class="close-menu"><span class="icon-close"></span> ' + closeLabel + '</a></li>');
+        $('<li><a class="close-menu"><span class="icon-close"></span> ' + closeLabel + '</a></li>').appendTo($nav.find('ul:first'))
       }
 
       if (settings.scrollbarFix) {
@@ -176,7 +178,7 @@
       }
 
       // opens and closes menu
-      $('.menu-toggle, .stellarnav-open').on('click.nav', function(e) {
+      $('.menu-toggle, .stellarnav-open, .close-menu', $nav).on('click.nav', function(e) {
         e.preventDefault();
 
         // if nav position is left or right, uses fadeToggle instead of slideToggle
@@ -196,25 +198,24 @@
               }
             });
           }
-
         } else {
           // static position - normal open and close animation
           $nav.find('ul:first').stop(true, true).slideToggle(settings.openingSpeed);
           $nav.toggleClass('active');
         }
       });
-
-      // activates the close button
-      $('.close-menu, .stellarnav-close').on('click.nav', function() {
-
-        $nav.removeClass('active');
-
-        if (settings.position == 'left' || settings.position == 'right') {
-          $nav.find('ul:first').stop(true, true).fadeToggle(settings.openingSpeed);
-        } else {
-          $nav.find('ul:first').stop(true, true).slideUp(settings.openingSpeed).toggleClass('active');
-        }
+      $nav.on('mouseover.nav', function () {
+        $nav.isOver = true;
       });
+      $nav.on('mouseleave.nav', function () {
+        $nav.isOver = false;
+      });
+      // close menu if click on document
+      $(document).on('click.nav', function () {
+        if(!$nav.isOver)
+          $nav.find('ul ul').slideUp(settings.openingSpeed);
+      })
+
 
       $nav.find('li a').each(function() {
         // adds toggle button to li items that have children
@@ -257,35 +258,66 @@
                 $(this).on('click.nav', function(e){
                   // $(e.target).parent().children('ul').slideToggle(settings.openingSpeed);
                   $(e.target).siblings('ul').slideToggle(settings.openingSpeed);
-                });
-                // open sub-menu with mouseover
-                $(this).on('mouseenter.nav', function(){
-                  if($($nav).find('ul ul a:visible').length) {
-                    $(this).children('ul').stop(true, true).slideDown(settings.openingSpeed);
-                  }
-                });
-              }
+                }).on('mouseenter.nav', function (e) {
+								  if($nav.find('>ul ul:visible').length) {
+				                    // close all visible sub-menus without current
+									$('ul:visible', $parentItems).not($(e.target).parents('ul')).not($(e.target).siblings('ul')).not($(e.target).children('ul')).slideUp(settings.openingSpeed);
+									$(e.delegateTarget).children('ul:hidden').slideDown(settings.openingSpeed);
+								  }
+								});
+			        	// open sub-menu with mouseover
+				        $('li.has-sub', this).on('mouseenter.nav', function(e){
+				          if($nav.find('>ul ul:visible').length) {
+				          // close all visible sub-menus without current
+									$('ul:visible', $parentItems).not($(e.target).parents('ul')).not($(e.target).siblings('ul')).not($(e.target).children('ul')).slideUp(settings.openingSpeed);
+				//					$('ul:visible', $parentItems).not($(e.target).parents('ul')).not($(e.target).siblings('ul')).find('li').removeClass('open');
+				          }
+				//                     if($(this).children('ul:hidden').length) {
+				          $(this).addClass('open').children('ul').stop(true, true).delay(settings.closingDelay).slideDown(settings.openingSpeed);
+				//                    }
+				        });
+				     }
               else {
                 $(this).on('mouseenter.nav', function(){
                   $(this).children('ul').stop(true, true).slideDown(settings.openingSpeed);
                 });
               }
-
-              $(this).on('mouseleave.nav', function(e){
-                if(e.originalEvent.x>0 && e.originalEvent.y>0)
-                 $(this).children('ul').stop(true, true).delay(settings.closingDelay).slideUp(settings.openingSpeed);
-              });
+							// close if leave menu
+/*              $(this).on('mouseleave.nav', function(e){
+                if(e.originalEvent.x>0 && e.originalEvent.y>0) {
+                  var self = this;
+//                  $nav.closeTimeout = setTimeout(function () {
+                    if($nav.isOver) {
+	console.log('leave', self);
+                      $(self).children('ul').stop(true, true).delay(settings.closingDelay).slideUp(settings.openingSpeed);
+                    }
+//                  }, settings.closingDelay);
+                }
+              });*/
 
               // second level and below
-              $(this).find('li.has-sub').on('mouseenter.nav', function(){
+              $(this).find('li.has-sub').on('mouseenter.nav', function() {
+//console.log('enter', this);
                 $(this).children('ul').stop(true, true).delay(settings.closingDelay).slideDown(settings.openingSpeed);
+								$(this).addClass('open');
               });
-              $(this).find('li.has-sub').on('mouseleave.nav', function(){
-                $(this).children('ul').stop(true, true).delay(settings.closingDelay).slideUp(settings.openingSpeed);
+              $(this).find('li.has-sub').on('mouseleave.nav', function(e) {
+                var self = this;
+//                $nav.closeTimeout = setTimeout(function () {
+//                  if($nav.isOver) {
+//console.log('up', e);
+//                  $nav.closeTimeout = setTimeout(function () {
+//                    if($nav.isOver) {
+	                    $(self).children('ul').stop(true, true).delay(settings.closingDelay).slideUp(settings.openingSpeed);
+											$(self).removeClass('open');
+//										}
+//                  }, settings.closingDelay);
+//                  }
+//                }, 100);
               });
               // hide on action
               $(this).find('li:not(.has-sub) > a').on('click.nav', function(){
-                $nav.find('ul ul').hide();
+                $nav.find('ul ul').slideUp(settings.openingSpeed);
               });
             }
           });
@@ -303,9 +335,19 @@
             });
             // hide on action
             $(this).find('li:not(.has-sub) > a').on('click.nav', function(){
-              $nav.find('ul:first').hide();
+              $nav.find('ul:first').slideUp(settings.openingSpeed);
             });
           });
+	      // activates the close button
+	      $('.close-menu, .stellarnav-close', $nav).on('click.nav', function() {
+	        $nav.removeClass('active');
+	        if (settings.position == 'left' || settings.position == 'right') {
+	          $nav.find('ul:first').stop(true, true).fadeToggle(settings.openingSpeed);
+	        } else {
+			  $('a.menu-toggle', $nav).trigger('click.nav');
+//	          $nav.find('ul:first').stop(true, true).slideUp(settings.openingSpeed).toggleClass('active');
+	        }
+	      });
         }
       }
 
@@ -332,7 +374,7 @@
             $(this).find('ul').first().removeAttr('style');
             $(this).find('ul').first().children().removeAttr('style');
           });
-
+					settings.onMobileMode();
         } else { // desktop nav
           $nav.addClass('desktop');
           $nav.removeClass('mobile');
@@ -393,7 +435,7 @@
             $nav.find('li.mega > ul').css({'max-width':navWidth});
           }
           // end mega dropdown
-
+					settings.onDesktopMode();
         } // end desktop nav
       } // windowCheck()
 

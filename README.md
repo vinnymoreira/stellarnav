@@ -54,8 +54,10 @@ jQuery('.stellarnav').stellarNav({
   closeBtn: false, // adds a close button to the end of nav
   closeLabel: 'Close', // label for the close button
   mobileMode: false,
-  mobileOpenOnClick: false,  // true to open submenu with click in mobile view
-  scrollbarFix: false // fixes horizontal scrollbar issue on very long navs
+  mobileOpenOnClick: false, // true to open submenu with click in mobile view
+  scrollbarFix: false, // fixes horizontal scrollbar issue on very long navs
+  onMobileMode: function () {}, // triggert on enter Mobile-Mode
+  onDesktopMode: function () {} // triggert on enter Desktop-Mode
 });
 ```
 
